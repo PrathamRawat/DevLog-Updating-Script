@@ -1,3 +1,6 @@
 rawatP -- 17:44:27
 Add file writing and git integration to script"
 
+rawatP -- 12:33:56
+Update devlog script with git change
+
