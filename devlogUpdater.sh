@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git pull
+
 timestamp() 
 {
 	time=$(date +%T)
@@ -42,4 +44,10 @@ first="$( echo $first | tr '[:lower:]' '[:upper:]')"
 timestamp
 header="$last${first:0:1} -- $time"
 
+echo $header >> devlog.txt
+echo $update >> devlog.txt
+echo  >> devlog.txt
 
+git add devlog.txt
+git commit -m "Updated devlog"
+git push
