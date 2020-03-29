@@ -1,0 +1,316 @@
+<html>
+    <head>
+        <title>Intro to Shell Scripting</title>
+        <style>
+            body {
+                background-color: black;
+                color: greenyellow;
+                font-family: monospace;
+            }
+            #intro {
+                text-align: center;
+            }
+            #shellBasics {
+                position: relative;
+                width: 80%;
+                left: 10%;
+            }
+            #shellScriptingBasics {
+                position: relative;
+                width: 80%;
+                left: 10%;
+            }
+            #howToShellScript {
+                position: relative;
+                width: 80%;
+                left: 10%;
+            }
+            .sectionHead {
+                text-align: center;
+            }
+            #codeBasics {
+                position: relative;
+                width: 80%;
+                left: 10%;
+            }
+            .code {
+                font-family: 'Courier New', Courier, monospace;
+                color: greenyellow;
+                background-color: darkslategray;
+                font-style: normal;
+                font-weight: 100;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="intro">
+            <br>
+            <h1>Introduction to Shell Scripting</h1>
+            <h4>By Emily Zhang and Pratham Rawat</h4>
+        </div>
+        <div id="shellBasics">
+            <br>
+            <br>
+            <h4>What is a Shell?</h4>
+            <p>At a basic level, a shell is a computer program which allows for users to access lower level operating system functions.
+                <br>
+                All of the functions that the OS and its GUI allow us to do can also be completed via a shell.
+                <br>
+                It can be considered the "outermost layer around the operating system."
+                <br>
+                <br>
+                Technically, any interface allowing the user to interact with the OS is a shell. 
+                <br>
+                Window management systems are a GUI style shells. The ones we are talking about though, are <strong>CLI shells</strong>. (Command Line Interface)
+                <br>
+                Over the years, there have been many different shells that provide different levels of functionality. 
+                <br>
+                (Mac users might be familiar with their terminal shell default moving from bash to zsh with MacOS Catalina)
+                <br>
+                <br>
+                The shell currently found on most Unix systems is <strong>bash</strong>, or the Bourne Again Shell. (Not a Jason Bourne Reference)
+                <br>
+                This shell was created as an upgraded version to the Bourne Shell, which used to be the ubiquitous shell used.
+                <br>
+                Because each shell has slightly different syntax, the scripts we write for them are not necessarily cross compatible.
+                <br>
+                We will be discussing bash scripting.
+                <br>
+                <br>
+            </p>
+        </div>
+        <div id="shellScriptingBasics">
+            <h4>What is Shell Scripting?</h4>
+            <p>
+                Shell Scripting allows us to write basic operating system scripts to be run by the shell language.
+                <br>
+                Because shell is written in C, it adds another layer of complexity on top of the C language.
+                <br>
+                <i>So why use a shell script instead of C?</i>
+                <br>
+                Shell scripts are cross platform for any OS running the same shell (C is not)
+                <br>
+                Shell scripts are generally much faster to write, which is a tradeoff for the marginal decrease in speed.
+                <br>
+                <br>
+                While its execution speed is slow due to creating a new process for every script, it is a favorite for writing wrapper scripts.
+                <br>
+                Shell scripts can easily execute programs coded in different programming languages and can link the inputs/outputs.
+                <br>
+                For this reason, it is often used to write git hooks, that help manage the usage of committing, pushing, etc.
+                <br>
+                <br>
+            </p>
+        </div>
+        <div id="howToShellScript">
+            <h2>How to Shell Script!</h2>
+            <h4 class="sectionHead">Creating the File</h4>
+            <p>
+                Shell script files use the ".sh" extension. 
+                <br>
+                <br>
+                After creating such a file, we cannot run it without giving the user execute permissions.
+                <br>
+                <br>
+                Runing <span class="code">chmod +x < filename ></span> in the terminal will give us permission to execute the file.
+                <br>
+                <br>
+                Every shell script starts with the "sha-bang," or <span class="code">#!bin/bash</span>
+                <br>
+                <i>This points to the program we want to use to run the script, in this case, bash.</i>
+                <br>
+                <i>The word sha-bang comes from the haSH (#) and bang (!) characaters at the front of the line.</i>
+                <br>
+                <br>
+                Now that the file is set up, we can continue to writing the code!
+            </p>
+        </div>
+        <div id="codeBasics">
+            <h4 class="sectionHead">Shell Scripting Basics</h4>
+            <p>
+                All lines in the script, if they are not special phrases, are run in the bash language.
+                <br>
+                <i>That means any command that you would run in the regular bash terminal can be run in a shell script.</i>
+                <br>
+                <br>
+                By chaining these commands, we can create useful and unique scripts that can do a variety of OS tasks.
+                <br>
+                <br>
+                <strong><i>
+                    You must put a space between every individual character/phrase that you write.
+                    The bash interpreter is very particular with the way it parses the file.
+                </i></strong>
+                <br>
+                <br>
+                Code can be commented out using <span class="code">#</span> at the start of the line, similar to python.
+                <br>
+                <br>
+                In order to print to the terminal, use the <span class="code">echo</span> command:
+                <span class="code">echo "Hello World"</span>
+                <br>
+                <br>
+                This can also be used to print the output of a regular bash command:
+                <span class="code">echo ls</span>
+                <br>
+                <br>Like any language, bash allows for the creation of variables:
+                <span class="code">foo=value</span>
+                <i>There are no variable types to be declared, and there cannot be any spaces between the name and the equal sign.</i>
+                <br>
+                <br>
+                In order to use the value of the variable, we have to use the replacement characater <span class="code">$</span>
+                <br>
+                <span class="code">
+                    var="Hello World!"
+                    <br>
+                    echo $var
+                </span>
+                <br>
+                Output: Hello World!
+                <br>
+                <i><strong>Without the <span class="code">$</span> character, the bash interpreter will try to run <span class="code">var</span> as a shell command, which will result in an error.</strong></i>
+                <br>
+                <br>
+                We can also initialize variables from data entered in by the user using the <span class="code">read</span> command.
+                <br>
+                <br>
+                <span class="code">
+                    read -variableName-
+                </span>
+                <br>
+                This will block the program until the user enters an input, which will be stored in the variable given as a string.
+            </p>
+            <h4 class="sectionHead">String Basics</h4>
+            <p>
+                Strings can be denoted by either single or double quotes.
+                <br>
+                Using these actually has different meanings the translation of escape charactes in the string.
+                <br>
+                <i>
+                    Single quotes will preserve the literal value of each character within the quotes.
+                    <br>
+                    Double quotes will allow for the translation of escape characters, and other replacement functions.
+                </i>
+                <br>
+                <br>
+                Shell scripting is built off of strings.
+
+                Strings can also be split similar to python:
+                <br>
+                <span class="code">
+                    var="abcdefghijklmnopqrstuywxyz"
+                    <br>
+                     echo ${var:0:10}
+                </span>
+                <br>
+                Output: abcdefghi
+                <br>
+                <i>The range of characters returned is from the first index inclusive, to the second one exclusive.</i>
+                <br>
+                <br>
+                Using these tools, along with <span class="code">$</span> replacement, we can concatenate strings enclosing multiple variable replacements in the same quoted block. There is no addition or subtraction of strings built into bash using functions or operators.
+                <br>
+            </p>
+            <h4 class="sectionHead">If Statements</h4>
+            <p>
+                If statements have the following syntax:
+                <br>
+                <br>
+                <span class="code">
+                    if [ -condition- ] <br>
+                    then <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-code- <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;... <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;... <br>
+                    fi
+                </span>
+                <br>
+                <br>
+                The <span class="code">fi</span> ends the if statement.
+                <br>
+            </p>
+            <h4 class="sectionHead">Functions</h4>
+            <p>
+                Functions act similarly to any other language, and are defined as follows:
+                <pre class="code">
+functionName(parameters)
+{
+    -code-
+    ...
+}
+                </pre>
+                <br>
+                A return value can be specified using the <span class="code">return</span> statement.
+            </p>
+                <br>
+                <br>
+                <br>
+                With all of these tools, and the power of regular bash commands otherwise run in the terminal, we can accomplish complex operating system actions as shown below.
+                <br>
+                The below script, written in bash, updates a development log file to the specifications required by our class:
+                <br>
+                Using only basic bash scripting constructs, we are able to use bash commands to great effect:
+                <br>
+                <br>
+            </p>
+            <pre class="code">
+#!/bin/bash
+
+git pull
+
+timestamp() 
+{
+	time=$(date +%T)
+}
+
+# User input for first name
+echo "Enter your first name:"
+read first
+
+if [ ! $first ]
+then
+	echo "Please provide an input"
+	exit
+fi
+
+# User input for last name
+echo "Enter your last name:"
+read last
+
+if [ ! $last ]
+then
+	echo "Please provide an input"
+	exit
+fi
+
+# User input for update section
+echo "Enter your update:"
+read update
+
+if [ ! $update ]
+then
+	echo "Please provide an input"
+	exit
+fi
+
+# Convert last name to all lowercase
+last="$( echo $last | tr '[:upper:]' '[:lower:]')"
+# Convert firstname to all uppercase
+first="$( echo $first | tr '[:lower:]' '[:upper:]')"
+timestamp
+header="$last${first:0:1} -- $time"
+
+echo $header >> devlog.txt
+echo $update >> devlog.txt
+echo  >> devlog.txt
+
+git add devlog.txt
+git commit -m "Updated devlog"
+git push
+            </pre>
+            <br>
+            <br>
+            <br>
+            Code can be found online <a href="https://github.com/PrathamRawat/DevLog-Updating-Script">here</a>
+        </div>
+    </body>
+</html>
